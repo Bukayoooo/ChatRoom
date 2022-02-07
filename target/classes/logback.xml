@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration
+        xmlns="http://ch.qos.logback/xml/ns/logback"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://ch.qos.logback/xml/ns/logback logback.xsd">
+    <!-- 输出控制，格式控制-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!--
+        %date            日期
+        [%-5p]           %p当前级别|-5靠左对其 最多输出5个字符
+        [%thread]        当前线程
+        %logger{60}      日志的消息
+        [%file : %line]  哪个文件哪一行
+        %msg%n           消息内容 和 换行
+        -->
+        <encoder>
+            <pattern>%date{HH:mm:ss} [%-5level] [%thread] %logger{17} - %m%n </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 用来控制查看那个类的日志内容（对mybatis name 代表命名空间） -->
+    <!--单独指定某个包 进行日志输出-->
+    <logger name="h" level="DEBUG" additivity="false"> <!--additivity =【true：反馈到<root 里面打印或者写出日志，false：不反馈】-->
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="io.netty.handler.logging.LoggingHandler" level="DEBUG" additivity="false"> <!--additivity =【true：反馈到<root 里面打印或者写出日志，false：不反馈】-->
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <root level="ERROR">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
+
+<!--        <?xml version="1.0" encoding="UTF-8"?>-->
+<!--<configuration-->
+<!--xmlns="http://ch.qos.logback/xml/ns/logback"-->
+<!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--xsi:schemaLocation="http://ch.qos.logback/xml/ns/logback logback.xsd">-->
+<!--<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--    <encoder>-->
+<!--        &lt;!&ndash;%date{HH:mm:ss.SSS} %c &ndash;&gt;-->
+<!--        <pattern>%date{HH:mm:ss.SSS} %c [%t] - %m%n</pattern>-->
+<!--    </encoder>-->
+<!--</appender>-->
+
+<!--&lt;!&ndash;<logger name="org.springframework.security.web.FilterChainProxy" level="DEBUG" additivity="false">-->
+<!--    <appender-ref ref="STDOUT"/>-->
+<!--</logger>-->
+<!--<logger name="org.springframework.security.web.access.intercept.FilterSecurityInterceptor" level="DEBUG" additivity="false">-->
+<!--    <appender-ref ref="STDOUT"/>-->
+<!--</logger>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<logger name="org.springframework.security.web" level="DEBUG" additivity="false">-->
+<!--    <appender-ref ref="STDOUT"/>-->
+<!--</logger>&ndash;&gt;-->
+<!--<logger name="h" level="debug" additivity="false">-->
+<!--    <appender-ref ref="STDOUT"/>-->
+<!--</logger>-->
+
+<!--<root level="ERROR">-->
+<!--    <appender-ref ref="STDOUT"/>-->
+<!--</root>-->
+<!--</configuration>-->
